@@ -1,0 +1,40 @@
+{
+  "teams": [
+    {
+      "name": "Inter (M.Beltrame) ",
+      "points": 55,
+      "fantapunti": 2741,
+      "image": "https://1.bp.blogspot.com/-5O5g_eGrFf4/YCPz5WuqebI/AAAAAAAB9kg/Ma15EUix1agY164NEhK6j2wcIXUxx02lQCLcBGAsYHQ/w400-h371/Inter%2Bde%2BMil%25C3%25A3o%2B-%2BITA%2B-%2BNOVO%2BOFICIAL.jpg"
+    },
+    {
+      "name": "Roma (A.Campagnolo) ",
+      "points": 54,
+      "fantapunti": 2593,
+      "image": "https://logodetimes.com/times/roma/logo-roma-4096.png"
+    },
+    {
+      "name": "Napoli (R.Rella) ",
+      "points": 54,
+      "fantapunti": 2727,
+      "image": "https://ih1.redbubble.net/image.2130082874.2309/st,small,507x507-pad,600x600,f8f8f8.jpg"
+    },
+    {
+      "name": "Milan (D.Mascherin) ",
+      "points": 54,
+      "fantapunti": 2674,
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/Logo_of_AC_Milan.svg/1200px-Logo_of_AC_Milan.svg.png"
+    },
+    {
+      "name": "Lazio (K.Sandri) ",
+      "points": 52,
+      "fantapunti": 2766.5,
+      "image": "https://i.pinimg.com/originals/0d/af/05/0daf05305998bb24576d3f918a5cb38e.png"
+    },
+    {
+      "name": "Juventus (G.Bean) (-6) ",
+      "points": 46,
+      "fantapunti": 2637,
+      "image": "https://th.bing.com/th/id/R.3c4e3112a463ae8efe8a7a0c8e40cd13?rik=Ji35bOsYUptvGg&riu=http%3a%2f%2f1000marcas.net%2fwp-content%2fuploads%2f2020%2f01%2fJuventus-logo.png&ehk=6AHrWJ53F1JKUolXY%2boYs%2fQOABq%2b2XD6U8%2fmMNXAR5c%3d&risl=&pid=ImgRaw&r=0&sres=1&sresct=1"
+    }
+  ]
+}
