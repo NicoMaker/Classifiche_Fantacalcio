@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serie A - Archivio Stagioni</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="icon" href="https://www.calciomagazine.net/wp-content/uploads/2024/07/serie-a-enilive-logo.jpg" type="image/jpeg">
+</head>
+<body>
+    <div class="background-gradient"></div>
+    
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo-icon">⚽</div>
+                    <h1 class="logo-text">Serie A Archive</h1>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                <h2 class="hero-title">Archivio Stagioni</h2>
+                <p class="hero-subtitle">Esplora tutte le stagioni della Serie A</p>
+                <div class="hero-logo">
+                    <img src="https://www.calciomagazine.net/wp-content/uploads/2024/07/serie-a-enilive-logo.jpg" alt="Serie A Logo">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="seasons-grid" id="seasonsGrid">
+                <div class="loading-state">
+                    <div class="spinner"></div>
+                    <p>Caricamento stagioni...</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container" id="currentYear">
+        </div>
+    </footer>
+
+    <script src="js/seasons.js"></script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+{
+  "zones": [
+    {
+      "name": "championship",
+      "label": "Campione",
+      "positions": [1],
+      "color": "gold"
+    },
+    {
+      "name": "Fascia 1",
+      "label": "Facia 1",
+      "positions": [2, 3, 4],
+      "color": "#1e40af"
+    },
+    {
+      "name": "Fascia 2",
+      "label": "Fascia 2",
+      "positions": [5,6],
+      "color": "orange"
+    },
+    {
+      "name": "Fascia 3",
+      "label": "Fascia 3",
+      "positions": [7,8],
+      "color": "#74fd20"
+    }
+  ]
+}

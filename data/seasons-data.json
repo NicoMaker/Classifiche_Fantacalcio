@@ -1,0 +1,17 @@
+{
+  "seasons": [
+    {
+      "year": "2025-2026",
+      "title": "Serie A 2025-2026",
+      "logo": "https://www.calciomagazine.net/wp-content/uploads/2024/07/serie-a-enilive-logo.jpg",
+      "url": "season/2025-2026/index.html"
+    },
+    {
+      "year": "2024-2025",
+      "title": "Serie A 2024-2025",
+      "champion": "Napoli",
+      "logo": "https://www.calciomagazine.net/wp-content/uploads/2024/07/serie-a-enilive-logo.jpg",
+      "url": "season/2024-2025/index.html"
+    }
+  ]
+}
