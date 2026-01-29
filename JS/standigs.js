@@ -84,27 +84,32 @@ function updateFooterDate() {
 
 function showLoading(show) {
   const loadingOverlay = document.getElementById("loading-overlay");
+  if (!loadingOverlay) return;
   loadingOverlay.style.display = show ? "flex" : "none";
 }
 
 function showError() {
   const errorMessage = document.getElementById("error-message");
+  if (!errorMessage) return;
   errorMessage.style.display = "flex";
 }
 
 function hideError() {
   const errorMessage = document.getElementById("error-message");
+  if (!errorMessage) return;
   errorMessage.style.display = "none";
 }
 
 function showNoResults() {
   const noResultsMessage = document.getElementById("no-results-message");
+  if (!noResultsMessage) return;
   noResultsMessage.style.display = "flex";
 }
 
 function hideNoResults() {
   const noResultsMessage = document.getElementById("no-results-message");
-  if (noResultsMessage) noResultsMessage.style.display = "none";
+  if (!noResultsMessage) return;
+  noResultsMessage.style.display = "none";
 }
 
 // Zona per posizione
@@ -124,9 +129,11 @@ function getTeamZone(position) {
 
 // SOLO posizione, nome+logo, punti, fantapunti
 function loadTableData(teams) {
-  const tableBody = document
-    .getElementById("league-table")
-    .getElementsByTagName("tbody")[0];
+  const table = document.getElementById("league-table");
+  if (!table) return;
+
+  const tableBody = table.getElementsByTagName("tbody")[0];
+  if (!tableBody) return;
 
   tableBody.innerHTML = "";
 
@@ -144,7 +151,7 @@ function loadTableData(teams) {
     const zoneInfo = getTeamZone(position);
     if (zoneInfo.normalized !== "none") {
       row.classList.add(`${zoneInfo.normalized}-zone`);
-      row.dataset.zone = zoneInfo.normalized;
+      row.dataset.zone = zoneInfo.normalized; // es. "fascia-1"
       row.dataset.zoneRaw = zoneInfo.raw;
     }
 
@@ -153,7 +160,7 @@ function loadTableData(teams) {
     positionCell.textContent = position;
     positionCell.classList.add("pos-col");
 
-    // Nome + logo
+    // Nome + logo (nome squadra / fantallenatore)
     const teamCell = row.insertCell();
     teamCell.innerHTML = `
       <img src="${team.image}" alt="${team.name}" width="36" height="36" />
@@ -197,7 +204,9 @@ function sortTeamsByCriteria(teams, criteria) {
     case "name":
       return [...teams].sort((a, b) => a.name.localeCompare(b.name));
     case "fantapunti":
-      return [...teams].sort((a, b) => (b.fantapunti || 0) - (a.fantapunti || 0));
+      return [...teams].sort(
+        (a, b) => (b.fantapunti || 0) - (a.fantapunti || 0)
+      );
     default:
       return teams;
   }
@@ -221,20 +230,23 @@ function highlightSelectedButton(criteria) {
 }
 
 function displaySortingCriteria(criteria) {
-  const sortingText = document
-    .getElementById("sorting-criteria")
-    .querySelector("span");
+  const sortingCriteria = document.getElementById("sorting-criteria");
+  if (!sortingCriteria) return;
+  const sortingText = sortingCriteria.querySelector("span");
+  if (!sortingText) return;
   sortingText.textContent =
     criteriaLabels[criteria] || "Nessun criterio selezionato";
 }
 
-// Filtri per zone (restano uguali)
+// Filtri per zone (incluse fasce)
 function filterTableByZone(zone) {
   currentFilter = zone;
   highlightLegendItem(zone);
 
   const rows = document.querySelectorAll("#league-table tbody tr");
+  if (!rows.length) return;
 
+  // Caso speciale: pulsante "Champions" che accorpa champions + championship
   if (zone === "champions") {
     rows.forEach((row) => {
       if (
@@ -256,6 +268,7 @@ function filterTableByZone(zone) {
     return;
   }
 
+  // Fasce e altre zone: matching diretto con dataset.zone (es. "fascia-1")
   rows.forEach((row) => {
     row.style.display = row.dataset.zone === zone ? "" : "none";
   });
@@ -275,11 +288,13 @@ function highlightLegendItem(zone) {
 
 function generateLegend() {
   const legend = document.querySelector(".legend");
+  if (!legend) return;
+
   legend.innerHTML = "";
   if (!zonesData.zones) return;
 
   zonesData.zones.forEach((zone) => {
-    const normalizedName = normalizeZoneName(zone.name);
+    const normalizedName = normalizeZoneName(zone.name); // es. "fascia-1"
     const legendItem = document.createElement("div");
     legendItem.className = `legend-item ${normalizedName}`;
     legendItem.innerHTML = `
@@ -328,9 +343,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  document
-    .getElementById("retry-button")
-    .addEventListener("click", loadTeamsData);
+  const retryButton = document.getElementById("retry-button");
+  if (retryButton) {
+    retryButton.addEventListener("click", loadTeamsData);
+  }
 
   const searchInput = document.getElementById("search-input");
   if (searchInput) {
