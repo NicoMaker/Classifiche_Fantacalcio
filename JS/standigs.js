@@ -113,9 +113,29 @@ function hideNoResults() {
 }
 
 // Zona per posizione
+// JSON:
+// {
+//   "zones": [
+//     { "name": "championship", "label": "Campione", "positions": [1], "color": "gold" },
+//     { "name": "Fascia 1", "label": "Fascia 1", "positions": [1,2,3,4], "color": "#1e40af" },
+//     ...
+//   ]
+// }
 function getTeamZone(position) {
   if (!zonesData.zones) return { raw: "none", normalized: "none" };
 
+  // 1) se è campione (posizione 1) assegno la zona "championship"
+  const championship = zonesData.zones.find(
+    (z) => normalizeZoneName(z.name) === "championship"
+  );
+  if (championship && championship.positions.includes(position)) {
+    return {
+      raw: championship.name,
+      normalized: normalizeZoneName(championship.name),
+    };
+  }
+
+  // 2) altrimenti cerco la prima zona che contiene la posizione (Fascia 1, 2, 3...)
   for (const zone of zonesData.zones) {
     if (zone.positions.includes(position)) {
       return {
@@ -124,6 +144,7 @@ function getTeamZone(position) {
       };
     }
   }
+
   return { raw: "none", normalized: "none" };
 }
 
@@ -151,7 +172,7 @@ function loadTableData(teams) {
     const zoneInfo = getTeamZone(position);
     if (zoneInfo.normalized !== "none") {
       row.classList.add(`${zoneInfo.normalized}-zone`);
-      row.dataset.zone = zoneInfo.normalized; // es. "fascia-1"
+      row.dataset.zone = zoneInfo.normalized; // es. "championship", "fascia-1"
       row.dataset.zoneRaw = zoneInfo.raw;
     }
 
@@ -261,6 +282,22 @@ function filterTableByZone(zone) {
     return;
   }
 
+  // Caso speciale: Fascia 1 che include anche il campione (posizione 1)
+  if (zone === "fascia-1") {
+    rows.forEach((row) => {
+      const pos = parseInt(
+        row.querySelector(".pos-col").textContent,
+        10
+      );
+      if (pos >= 1 && pos <= 4) {
+        row.style.display = "";
+      } else {
+        row.style.display = "none";
+      }
+    });
+    return;
+  }
+
   if (zone === "all") {
     rows.forEach((row) => {
       row.style.display = "";
@@ -268,7 +305,7 @@ function filterTableByZone(zone) {
     return;
   }
 
-  // Fasce e altre zone: matching diretto con dataset.zone (es. "fascia-1")
+  // Fasce e altre zone: matching diretto con dataset.zone
   rows.forEach((row) => {
     row.style.display = row.dataset.zone === zone ? "" : "none";
   });
@@ -294,7 +331,7 @@ function generateLegend() {
   if (!zonesData.zones) return;
 
   zonesData.zones.forEach((zone) => {
-    const normalizedName = normalizeZoneName(zone.name); // es. "fascia-1"
+    const normalizedName = normalizeZoneName(zone.name); // es. "fascia-1", "championship"
     const legendItem = document.createElement("div");
     legendItem.className = `legend-item ${normalizedName}`;
     legendItem.innerHTML = `
